@@ -1,18 +1,23 @@
 {
   "name": "runpod-apps",
-  "module": "index.ts",
   "type": "module",
   "scripts": {
     "dev": "bun run index.ts",
     "build": "bun build index.ts --outdir ./dist --target bun",
     "check": "bun run scripts/check.ts",
     "docker:build": "bun run scripts/docker-build.ts",
-    "docker:push": "bun run scripts/docker-push.ts"
+    "docker:push": "bun run scripts/docker-push.ts",
+    "test": "bun run src/tests/seedvr2.test.ts && bun run src/tests/infinitetalk.test.ts",
+    "test:seedvr2": "bun run src/tests/seedvr2.test.ts",
+    "test:infinitetalk": "bun run src/tests/infinitetalk.test.ts"
   },
   "devDependencies": {
     "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "runpod-sdk": "^1.1.2"
   }
 }

@@ -55,6 +55,11 @@ bun run docker:build seedvr2  # 只构建 SeedVR2
 # 推送到 Docker Hub
 bun run docker:push           # 推送所有应用
 bun run docker:push seedvr2   # 只推送 SeedVR2
+
+# 运行集成测试
+bun test                      # 测试所有 endpoints
+bun run test:seedvr2          # 只测试 SeedVR2
+bun run test:infinitetalk     # 只测试 InfiniteTalk
 ```
 
 #### 构建和测试 Docker 镜像

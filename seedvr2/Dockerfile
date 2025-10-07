@@ -8,6 +8,9 @@ WORKDIR /app
 RUN ln -sf $(which python3.11) /usr/local/bin/python && \
     ln -sf $(which python3.11) /usr/local/bin/python3
 
+# Upgrade pip to latest version
+RUN python -m pip install --upgrade pip
+
 # Install system dependencies for video processing
 RUN apt-get update && apt-get install -y \
     ffmpeg \
@@ -19,7 +22,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copy requirements and install Python dependencies
 COPY requirements.txt /app/requirements.txt
-RUN uv pip install --upgrade -r /app/requirements.txt --no-cache-dir --system
+RUN pip install --no-cache-dir -r /app/requirements.txt
 
 # Copy handler
 COPY handler.py /app/handler.py
