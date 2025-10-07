@@ -1,0 +1,7 @@
+{
+  "input": {
+    "video": "https://example.com/sample_video.mp4",
+    "seed": 42,
+    "fps": 30
+  }
+}

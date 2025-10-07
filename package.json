@@ -1,0 +1,18 @@
+{
+  "name": "runpod-apps",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "bun run index.ts",
+    "build": "bun build index.ts --outdir ./dist --target bun",
+    "check": "bun run scripts/check.ts",
+    "docker:build": "bun run scripts/docker-build.ts",
+    "docker:push": "bun run scripts/docker-push.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
