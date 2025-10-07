@@ -6,7 +6,7 @@
 
 import { $ } from "bun";
 
-const apps = ["seedvr2", "infinitetalk"] as const;
+const apps = ["infinitetalk"] as const;
 type App = typeof apps[number];
 
 // Get Docker username from environment

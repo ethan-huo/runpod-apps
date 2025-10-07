@@ -71,14 +71,6 @@ git push origin main
 1. 访问 https://www.runpod.io/console/serverless/user/templates
 2. 点击 **+ New Template**
 
-#### SeedVR2 配置
-```
-Template Name: seedvr2-template
-Container Image: YOUR_USERNAME/seedvr2:latest
-Container Disk: 20 GB
-Environment Variables: (可选)
-```
-
 #### InfiniteTalk 配置
 ```
 Template Name: infinitetalk-template

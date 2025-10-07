@@ -14,7 +14,7 @@ bun run check
 ```
 
 Checks:
-- Required directories exist (seedvr2, infinitetalk, .github/workflows)
+- Required directories exist (infinitetalk, .github/workflows)
 - Required files exist (Dockerfiles, handlers, READMEs)
 - Environment variables are configured (.env file)
 
@@ -27,8 +27,8 @@ bun run scripts/docker-build.ts
 bun run docker:build
 
 # Build specific app
-bun run scripts/docker-build.ts seedvr2
-bun run docker:build seedvr2
+bun run scripts/docker-build.ts infinitetalk
+bun run docker:build infinitetalk
 ```
 
 ### `docker-push.ts`

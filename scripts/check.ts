@@ -9,7 +9,7 @@ console.log("🔍 Checking RunPod Apps configuration...\n");
 // Check for required directories
 import { existsSync } from "fs";
 
-const requiredDirs = ["seedvr2", "infinitetalk", ".github/workflows"];
+const requiredDirs = ["infinitetalk", ".github/workflows"];
 const missingDirs: string[] = [];
 
 for (const dir of requiredDirs) {
@@ -28,8 +28,6 @@ const requiredFiles = [
   "QUICKSTART.md",
   ".gitignore",
   ".github/workflows/deploy-runpod-apps.yml",
-  "seedvr2/Dockerfile",
-  "seedvr2/handler.py",
   "infinitetalk/Dockerfile",
   "infinitetalk/handler.py",
 ];

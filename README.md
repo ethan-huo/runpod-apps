@@ -4,17 +4,7 @@
 
 ## 📦 项目列表
 
-### 1. [SeedVR2 - 视频超分辨率](./seedvr2)
-基于 SeedVR2-3B 模型的视频超分辨率服务。
-
-**特性：**
-- 视频/图像超分辨率处理
-- 支持 URL、Base64 和本地路径输入
-- 可配置种子和 FPS
-
-**状态：** 🚧 模板阶段（需要集成实际模型）
-
-### 2. [InfiniteTalk - AI 口型同步视频生成](./infinitetalk)
+### 1. [InfiniteTalk - AI 口型同步视频生成](./infinitetalk)
 基于 InfiniteTalk 的 AI 口型同步视频生成服务。
 
 **特性：**
@@ -50,25 +40,18 @@ bun run check
 
 # 构建 Docker 镜像
 bun run docker:build          # 构建所有应用
-bun run docker:build seedvr2  # 只构建 SeedVR2
 
 # 推送到 Docker Hub
 bun run docker:push           # 推送所有应用
-bun run docker:push seedvr2   # 只推送 SeedVR2
 
 # 运行集成测试
 bun test                      # 测试所有 endpoints
-bun run test:seedvr2          # 只测试 SeedVR2
 bun run test:infinitetalk     # 只测试 InfiniteTalk
 ```
 
 #### 构建和测试 Docker 镜像
 
 ```bash
-# SeedVR2
-cd seedvr2
-docker build -t seedvr2:test .
-
 # InfiniteTalk
 cd infinitetalk
 docker build -t infinitetalk-runpod:test .
@@ -77,9 +60,6 @@ docker build -t infinitetalk-runpod:test .
 #### 本地运行（需要 GPU）
 
 ```bash
-# SeedVR2
-docker run --gpus all -p 8000:8000 seedvr2:test
-
 # InfiniteTalk
 docker run --gpus all -p 8000:8000 infinitetalk-runpod:test
 ```
@@ -103,9 +83,7 @@ docker run --gpus all -p 8000:8000 infinitetalk-runpod:test
 
 当你推送代码到 `main` 分支时，GitHub Actions 会自动检测变更：
 
-- 修改 `seedvr2/**` → 只部署 SeedVR2
 - 修改 `infinitetalk/**` → 只部署 InfiniteTalk
-- 同时修改两者 → 同时部署两个应用
 
 ```bash
 git add .
@@ -121,7 +99,6 @@ git push origin main
 3. 点击 **Run workflow**
 4. 选择要部署的应用：
    - `all` - 部署所有应用
-   - `seedvr2` - 只部署 SeedVR2
    - `infinitetalk` - 只部署 InfiniteTalk
 
 ### 部署流程
@@ -130,13 +107,9 @@ git push origin main
 graph LR
     A[Push Code] --> B[Detect Changes]
     B --> C{Which App?}
-    C -->|SeedVR2| D[Build SeedVR2]
-    C -->|InfiniteTalk| E[Build InfiniteTalk]
-    C -->|Both| F[Build Both]
-    D --> G[Push to Docker Hub]
-    E --> G
-    F --> G
-    G --> H[Ready for RunPod]
+    C -->|InfiniteTalk| D[Build InfiniteTalk]
+    D --> E[Push to Docker Hub]
+    E --> F[Ready for RunPod]
 ```
 
 ## 📝 部署到 RunPod
@@ -147,11 +120,10 @@ graph LR
    - 访问 [RunPod Templates](https://www.runpod.io/console/serverless/user/templates)
    - 点击 **New Template**
    - 设置 Docker 镜像：
-     - SeedVR2: `your-username/seedvr2:latest`
      - InfiniteTalk: `your-username/infinitetalk-runpod:latest`
 
 2. **配置 Template**
-   - Container Disk: 20GB (SeedVR2) / 50GB+ (InfiniteTalk)
+   - Container Disk: 50GB+ (InfiniteTalk)
    - Environment Variables: 根据需要配置
    - Network Volume: 可选，用于持久化模型权重
 
@@ -183,19 +155,11 @@ wget -qO- cli.runpod.net | sudo bash     # Linux
 runpodctl config --apiKey=YOUR_API_KEY
 
 # 部署（从项目目录）
-cd seedvr2
-runpodctl project deploy
-
-cd ../infinitetalk
+cd infinitetalk
 runpodctl project deploy
 ```
 
 ## 🔑 环境变量
-
-### SeedVR2
-```env
-# 暂无特殊环境变量
-```
 
 ### InfiniteTalk
 ```env
@@ -213,12 +177,6 @@ runpod-apps/
 │   ├── check.ts                   # 检查项目配置
 │   ├── docker-build.ts            # 构建 Docker 镜像
 │   └── docker-push.ts             # 推送镜像到 Docker Hub
-├── seedvr2/                        # SeedVR2 项目
-│   ├── Dockerfile
-│   ├── handler.py
-│   ├── requirements.txt
-│   ├── runpod.toml
-│   └── README.md
 ├── infinitetalk/                   # InfiniteTalk 项目
 │   ├── Dockerfile
 │   ├── handler.py
@@ -308,7 +266,6 @@ print(result)
 ## 📄 许可证
 
 各项目遵循其原始许可证：
-- SeedVR2: 待确认
 - InfiniteTalk: Apache 2.0
 
 ## 🤝 贡献

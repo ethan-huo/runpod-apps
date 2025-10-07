@@ -18,9 +18,6 @@ Add the following to your `.env` file:
 # RunPod API Key (required)
 RUNPOD_API_KEY=your_api_key_here
 
-# SeedVR2 Endpoint ID
-SEEDVR2_ENDPOINT_ID=your_seedvr2_endpoint_id
-
 # InfiniteTalk Endpoint ID
 INFINITETALK_ENDPOINT_ID=your_infinitetalk_endpoint_id
 ```
@@ -34,9 +31,6 @@ Get your endpoint IDs from the [RunPod Serverless Console](https://www.runpod.io
 ### Test Individual Endpoints
 
 ```bash
-# Test SeedVR2
-bun run src/tests/seedvr2.test.ts
-
 # Test InfiniteTalk
 bun run src/tests/infinitetalk.test.ts
 ```
@@ -49,13 +43,6 @@ bun test
 ```
 
 ## Test Coverage
-
-### SeedVR2 Tests
-
-- ✅ **Health Check**: Verify endpoint is online and workers are available
-- ⏸️  **Async Run**: Submit job and poll for completion
-- ⏸️  **Sync Run**: Wait for immediate result
-- ⏸️  **Cancel Job**: Test job cancellation
 
 ### InfiniteTalk Tests
 
@@ -148,10 +135,8 @@ These tests can be integrated into GitHub Actions:
 - name: Run integration tests
   env:
     RUNPOD_API_KEY: ${{ secrets.RUNPOD_API_KEY }}
-    SEEDVR2_ENDPOINT_ID: ${{ secrets.SEEDVR2_ENDPOINT_ID }}
     INFINITETALK_ENDPOINT_ID: ${{ secrets.INFINITETALK_ENDPOINT_ID }}
   run: |
-    bun run src/tests/seedvr2.test.ts
     bun run src/tests/infinitetalk.test.ts
 ```
 
