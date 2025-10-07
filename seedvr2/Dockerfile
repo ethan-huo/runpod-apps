@@ -8,8 +8,8 @@ WORKDIR /app
 RUN ln -sf $(which python3.11) /usr/local/bin/python && \
     ln -sf $(which python3.11) /usr/local/bin/python3
 
-# Upgrade pip to latest version
-RUN python -m pip install --upgrade pip
+# Install uv - fast Python package installer
+RUN pip install uv
 
 # Install system dependencies for video processing
 RUN apt-get update && apt-get install -y \
@@ -20,9 +20,9 @@ RUN apt-get update && apt-get install -y \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements and install Python dependencies
+# Copy requirements and install Python dependencies using uv (much faster than pip)
 COPY requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r /app/requirements.txt
+RUN uv pip install --system --no-cache-dir -r /app/requirements.txt
 
 # Copy handler
 COPY handler.py /app/handler.py
