@@ -23,17 +23,15 @@ name = "seedvr2"
 uuid = "d84d1dd5"
 base_image = "runpod/base:0.6.3-cuda12.1.0"
 gpu_types = [
-    "NVIDIA GeForce RTX 3090",  # 24GB - commonly available
     "NVIDIA GeForce RTX 4090",  # 24GB
-    "NVIDIA RTX A4000",         # 16GB
-    "NVIDIA RTX A5000",         # 24GB
     "NVIDIA A40",               # 48GB
     "NVIDIA RTX A6000",         # 48GB
+    "NVIDIA L40",               # 48GB
+    "NVIDIA L40S",              # 48GB
     "NVIDIA A100 80GB PCIe",    # 80GB
     "NVIDIA A100-SXM4-80GB",    # 80GB
-    "NVIDIA L40",               # 48GB
-    "NVIDIA GeForce RTX 3080",  # 10GB/12GB
-    "NVIDIA GeForce RTX 4080",  # 16GB
+    "NVIDIA H100 80GB HBM3",    # 80GB
+    "NVIDIA H100 PCIe",         # 80GB
 ]
 gpu_count = 1
 storage_id = "3uwnzdk192"
