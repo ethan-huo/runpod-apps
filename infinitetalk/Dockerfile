@@ -61,7 +61,11 @@ RUN wget https://huggingface.co/Comfy-Org/Wan_2.1_ComfyUI_repackaged/resolve/mai
 RUN wget https://huggingface.co/Kijai/MelBandRoFormer_comfy/resolve/main/MelBandRoformer_fp16.safetensors -O /ComfyUI/models/diffusion_models/MelBandRoformer_fp16.safetensors
 
 
-COPY . .
+# Copy files from infinitetalk directory (since build context is repo root)
+COPY infinitetalk/entrypoint.sh /entrypoint.sh
+COPY infinitetalk/handler.py /handler.py
+COPY infinitetalk/*.json /
+
 RUN chmod +x /entrypoint.sh
 
 CMD ["/entrypoint.sh"]
